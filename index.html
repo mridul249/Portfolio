@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mriduld.in</title>
+<style>
+  :root {
+    --base: #1e1e2e;
+    --mantle: #181825;
+    --text: #cdd6f4;
+    --subtext: #6c7086;
+    --green: #a6e3a1;
+    --yellow: #f9e2af;
+    --mauve: #cba6f7;
+    --red: #f38ba8;
+    --surface: #313244;
+    --mono: "JetBrains Mono", "Fira Code", "SFMono-Regular", Consolas, monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: var(--base);
+    color: var(--text);
+    font-family: var(--mono);
+    height: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 24px;
+  }
+
+  .terminal {
+    width: 100%;
+    max-width: 680px;
+    background: var(--mantle);
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    overflow: hidden;
+    border: 1px solid var(--surface);
+  }
+
+  .titlebar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: var(--surface);
+  }
+
+  .dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+  }
+  .dot.red { background: var(--red); }
+  .dot.yellow { background: var(--yellow); }
+  .dot.green { background: var(--green); }
+
+  .titlebar span {
+    margin-left: 8px;
+    font-size: 12px;
+    color: var(--subtext);
+  }
+
+  .screen {
+    padding: 22px 24px 28px;
+    font-size: 13.5px;
+    line-height: 1.65;
+    min-height: 340px;
+  }
+
+  .line {
+    white-space: pre-wrap;
+    opacity: 0;
+    animation: reveal 0.15s forwards;
+  }
+
+  @keyframes reveal {
+    to { opacity: 1; }
+  }
+
+  .ok { color: var(--green); font-weight: 600; }
+  .prompt { color: var(--mauve); }
+  .path { color: var(--yellow); }
+  .dim { color: var(--subtext); }
+  .cmd { color: var(--text); }
+
+  .final {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--surface);
+  }
+
+  .name {
+    color: var(--mauve);
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .links {
+    margin-top: 10px;
+    display: flex;
+    gap: 18px;
+  }
+
+  .links a {
+    color: var(--green);
+    text-decoration: none;
+    font-size: 13px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s ease;
+  }
+
+  .links a:hover, .links a:focus-visible {
+    border-color: var(--green);
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    background: var(--text);
+    margin-left: 4px;
+    animation: blink 1s step-end infinite;
+    vertical-align: middle;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .line { animation: none; opacity: 1; }
+    .cursor { animation: none; }
+  }
+
+  @media (max-width: 480px) {
+    .screen { font-size: 12px; padding: 18px 16px 22px; min-height: 300px; }
+    .name { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="terminal">
+  <div class="titlebar">
+    <div class="dot red"></div>
+    <div class="dot yellow"></div>
+    <div class="dot green"></div>
+    <span>mridul@mriduld:~</span>
+  </div>
+  <div class="screen" id="screen"></div>
+</div>
+
+<script>
+  const lines = [
+    { html: '<span class="prompt">mridul@mriduld</span><span class="dim">:~$</span> <span class="cmd">systemctl start mriduld.service</span>' },
+    { html: '<span class="dim">Starting mriduld.service — Mridul Kumar Dwivedi&#39;s daemon...</span>' },
+    { html: '<span class="ok">[  OK  ]</span> <span class="dim">Loaded unit</span> <span class="path">/etc/mriduld/portfolio.conf</span>' },
+    { html: '<span class="ok">[  OK  ]</span> <span class="dim">Mounted container security experience</span>' },
+    { html: '<span class="ok">[  OK  ]</span> <span class="dim">Mounted Hypervisor research</span>' },
+    { html: '<span class="dim">[ WAIT ] Building portfolio artifacts...</span>' },
+    { html: '<span class="dim">[ WAIT ] Status: activating (auto-restart)</span>' },
+    { html: '&nbsp;' },
+    { html: '<span class="dim"># Site under construction. Check back soon.</span>' },
+  ];
+
+  const screen = document.getElementById('screen');
+  let i = 0;
+
+  function typeNext() {
+    if (i >= lines.length) {
+      showFinal();
+      return;
+    }
+    const div = document.createElement('div');
+    div.className = 'line';
+    div.innerHTML = lines[i].html;
+    screen.appendChild(div);
+    i++;
+    setTimeout(typeNext, i === 1 ? 500 : 320);
+  }
+
+  function showFinal() {
+    const final = document.createElement('div');
+    final.className = 'line final';
+    final.innerHTML = `
+      <div class="name">Mridul Dwivedi<span class="cursor"></span></div>
+      <div class="dim" style="margin-top:6px;">Software Engineer — Container Security @ RapidFort</div>
+      <div class="links">
+        <a href="https://github.com/mridul249/" target="_blank" rel="noopener">github</a>
+        <a href="https://www.linkedin.com/in/mridul249/" target="_blank" rel="noopener">linkedin</a>
+        <a href="mailto:mridul60214@gmail.com">email</a>
+      </div>
+    `;
+    screen.appendChild(final);
+  }
+
+  typeNext();
+</script>
+
+</body>
+</html>
