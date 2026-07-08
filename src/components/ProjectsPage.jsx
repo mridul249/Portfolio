@@ -4,7 +4,7 @@ import content from '../data/content.json';
 
 const isComingSoon = (item) => typeof item.status === 'string' && item.status.toLowerCase().includes('coming');
 
-// Compact card in the grid. Click to expand (coming-soon stubs don't expand —
+// Compact card in the grid. Click to expand (coming-soon stubs don't expand -
 // there's nothing more to show).
 function Card({ item, onOpen }) {
   const soon = isComingSoon(item);

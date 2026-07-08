@@ -11,7 +11,7 @@ export default function Hud({ active }) {
 
   const navIndex = content.nav.findIndex((n) => n.id === active);
   const sectionLabel =
-    navIndex === -1 ? '00 — INDEX' : `${String(navIndex + 1).padStart(2, '0')} — ${content.nav[navIndex].label}`;
+    navIndex === -1 ? '00 - INDEX' : `${String(navIndex + 1).padStart(2, '0')} - ${content.nav[navIndex].label}`;
 
   useEffect(() => {
     const onScroll = () => {

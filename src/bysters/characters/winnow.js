@@ -1,5 +1,5 @@
 // Vendored from @banjobyster/bysters demo (demo/characters/winnow.js).
-// "Winnow" — a faint, tall-narrow portable-TV ghost byster that drifts on low
+// "Winnow" - a faint, tall-narrow portable-TV ghost byster that drifts on low
 // gravity, hangs under surfaces, and shies away from the cursor.
 
 const COL = {

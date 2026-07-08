@@ -38,7 +38,7 @@ export default function CustomCursor() {
 
   return (
     <>
-      {/* Crisp pixel-square outline lagging behind the dot — the pixelated
+      {/* Crisp pixel-square outline lagging behind the dot - the pixelated
           spotlight itself lives in the DitherBackground shader. */}
       <motion.div
         className="pointer-events-none fixed top-0 left-0 z-[9998]"

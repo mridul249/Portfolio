@@ -1,66 +1,81 @@
-# Mridul Kumar — Portfolio
+# Mridul Kumar - Portfolio
 
-Minimal dark-grey portfolio: mono HUD chrome, WebGL fluid background, and procedurally-animated bots. Built with **Vite + React**, **Tailwind CSS v4**, **Framer Motion**, **React Three Fiber**, and [`@banjobyster/bysters`](https://github.com/banjobyster/bysters).
+public/portfolio_screencast.mp4
+
+<!--
+  GitHub only renders video previews for files uploaded through its own
+  attachment flow (drag-and-drop into a PR/issue/README editor on github.com),
+  which gives you a github.com/user-attachments/... URL - swap that in above.
+  A plain relative path like public/portfolio_screencast.mp4 will NOT preview
+  inline; it just renders as a dead link. If you'd rather skip the upload step,
+  use a clickable poster image instead:
+
+  [![Watch the demo](public/preview.png)](public/portfolio_screencast.mp4)
+-->
+
+Minimal dark-grey portfolio: mono HUD chrome, WebGL fluid background, procedurally-animated bots. Built with **Vite + React**, **Tailwind CSS v4**, **Framer Motion**, **React Three Fiber**, and [`@banjobyster/bysters`](https://github.com/banjobyster/bysters).
 
 ## Run
 
 ```bash
 npm install
 npm run dev      # dev server
-npm run build    # production build -> dist/
+npm run build    # production -> dist/
 npm run preview  # preview the build
 ```
 
-## Editing content — one file
+## Editing content
 
-**All site text lives in [`src/data/content.json`](src/data/content.json)** — name, nav, work rows, experience, about rows, contact, marquee chips, badge. Push a text change by editing that file only; no component needs touching.
+All site text lives in **[`src/data/content.json`](src/data/content.json)** - name, nav, work, experience, about, contact, marquee, badge. Edit that file only; no component needs touching.
 
-- **Section order/numbering** follows the `nav` array order — reorder it and the whole site renumbers.
-- **Projects**: home shows the first `workHomeLimit` entries; `#/projects` lists them all. Each entry carries its own `link.url`. Give an entry `"status": "coming soon"` and it renders as just the dimmed title + a COMING SOON tag (no description or link needed).
-
-- **Projects page (`#/projects`)**: a card grid; click a card to expand it in place (uses optional `details` text, falls back to `description`). Returning to the home page restores the exact section/scroll you left from.
+- Section order follows the `nav` array - reorder it and the site renumbers.
+- **Projects**: home shows the first `workHomeLimit` entries; `#/projects` lists all. Give an entry `"status": "coming soon"` to render just a dimmed title + tag, no description/link needed.
+- **Projects page**: card grid, click to expand (`details`, falling back to `description`). Returning to home restores your exact scroll position.
 
 ## Architecture
 
 | Piece | File |
 |---|---|
-| Boot loader → navbar morph (shared `layoutId`) | `src/components/Loader.jsx`, `Navbar.jsx` |
-| Bayer-dither pixel background + cursor spotlight-reveal (GLSL, **hero box only**) | `src/components/DitherBackground.jsx` |
-| Cursor: accent dot + spring-lagged pixel square | `src/components/CustomCursor.jsx` |
-| Bottom HUD (SCRL / CRSR / section / theme / IST clock) | `src/components/Hud.jsx` |
-| Bayer-dithered hero portrait w/ cursor spotlight | `src/components/DitherPortrait.jsx` |
-| Core Competencies (line icons) | `src/components/CoreCompetencies.jsx` |
+| Boot loader → navbar morph | `Loader.jsx`, `Navbar.jsx` |
+| Dither pixel background + cursor spotlight (hero only) | `DitherBackground.jsx` |
+| Cursor: accent dot + lagged pixel square | `CustomCursor.jsx` |
+| Bottom HUD (scroll / cursor / section / theme / clock) | `Hud.jsx` |
+| Dithered hero portrait | `DitherPortrait.jsx` |
+| Core competencies icons | `CoreCompetencies.jsx` |
 | Sections | `Hero`, `Marquee`, `Experience`, `Work`, `CoreCompetencies`, `Articles`, `About`, `Contact` |
-| Scroll-tracking ladder bot (climb up/down) | `src/components/ScrollLadderBot.jsx` |
-| Visitor analytics (fingerprint) | `src/lib/analytics.js` |
+| Scroll-tracking ladder bot | `ScrollLadderBot.jsx` |
+| Visitor analytics | `lib/analytics.js` |
 
 Degrades cleanly: no WebGL or `prefers-reduced-motion` → flat background, static bot, everything else works.
 
 ## Ladder bot
 
-A single persistent CRT-robot climbs a vertical rail (left gutter) to track scroll (`src/components/ScrollLadderBot.jsx`). Its target Y is derived every frame from `scrollY / (scrollHeight - innerHeight)` and it lerps toward that target with a symmetric per-frame step, so it climbs **up** the rail when you scroll up and **down** when you scroll down — following wherever you are, at equal speed both ways. State machine: `idle` (grip + bob) when at the target, `climb` (limbs cycling, sprite facing travel direction via `[data-dir]`) while moving. One rAF loop drives it imperatively; React never re-renders per frame. `prefers-reduced-motion` → it just sits at the target.
+A CRT-robot climbs a vertical rail to track scroll (`ScrollLadderBot.jsx`). Target Y = `scrollY / (scrollHeight - innerHeight)`; it lerps toward that target at an equal speed up or down, one rAF loop, no per-frame React re-render. `idle` when at target, `climb` while moving, sprite flips via `[data-dir]`. `prefers-reduced-motion` → sits still.
 
-> An alternative implementation using the real **pixi.js "bysters" engine** — bots that climb a `[data-walk]` rung ladder as physical terrain — lives unused under `src/bysters/`. It's charming but slides *down* far faster than it climbs *up* (each jump arc is fixed-time, and the engine's jump ceiling can't be raised without forking), so it can't track an upward scroll. The lerp bot above follows both directions evenly. Delete `src/bysters/` + the `@banjobyster/bysters`/`pixi.js` deps if you don't want to keep that option around.
+> An alternate pixi.js-based version (bots physically climbing `[data-walk]` rungs) lives unused under `src/bysters/` - it descends far faster than it climbs, so it can't track upward scroll. Delete `src/bysters/` and the `@banjobyster/bysters`/`pixi.js` deps if you don't need it.
 
 ## Blog / Articles API
 
-`content.json → articles.apiUrl` is empty for now, so the section shows `[ NOTHING TO DISPLAY ]`. When the API exists:
-
+`content.json → articles.apiUrl` is empty, so the section shows `[ NOTHING TO DISPLAY ]`. To enable:
 1. Set `apiUrl` to an endpoint returning `[{ "title", "date", "url", "tags": [] }]`.
-2. Add the API origin to `connect-src` in the CSP in [`vite.config.js`](vite.config.js) — the current policy is `connect-src 'self'` and will block cross-origin fetches.
+2. Add its origin to `connect-src` in the CSP in `vite.config.js`.
 
 ## Visitor analytics
 
-`content.json → analytics.endpoint` is empty (disabled). Set it to your collector URL and each visit POSTs a JSON payload (browser fingerprint + a stable `visitorId` + page/referrer). **The IP address and geolocation are derived server-side from the request** — the browser can't read its own public IP and a third-party IP service would be CSP-blocked. Guardrails: fires once per session, honors Do-Not-Track / GPC. Two things before going live:
-
-1. Add your endpoint's origin to `connect-src` in the CSP ([`vite.config.js`](vite.config.js)).
-2. Depending on your audience/jurisdiction (GDPR/ePrivacy), fingerprinting may require a consent banner — wire that in first.
+`content.json → analytics.endpoint` is empty (disabled). Set it to a collector URL and each visit POSTs a fingerprint + stable `visitorId` + page/referrer. IP/geolocation are resolved server-side, not client-side. Fires once per session, honors Do-Not-Track/GPC.
+1. Add the endpoint's origin to `connect-src` in the CSP.
+2. Depending on jurisdiction (GDPR/ePrivacy), fingerprinting may need a consent banner first.
 
 ## Optional assets
 
-- `public/portrait.jpg` — hero portrait; gets Bayer-dithered automatically. Without it, a procedural pattern renders instead.
-- `public/resume.pdf` — linked from the hero, navbar, About (preview/download), and Contact.
+- `public/portrait.jpg` - hero portrait, auto-dithered. Falls back to a procedural pattern if absent.
+- `public/resume.pdf` - linked from hero, navbar, About, Contact.
+- `public/portfolio_screencast.mp4` - demo video referenced above.
 
 ## Deploy
 
-Custom domain via `CNAME`; `npm run build` outputs a root-served `dist/`. A build-time plugin injects the Content-Security-Policy meta tag (GitHub Pages can't set headers).
+Custom domain via `CNAME`; `npm run build` outputs a root-served `dist/`. A build-time plugin injects the CSP meta tag (GitHub Pages can't set headers).
+
+## License
+
+MIT - see [LICENSE](LICENSE).

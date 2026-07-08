@@ -22,12 +22,12 @@ export default function ProjectRow({ item, i }) {
         ))}
       </div>
 
-      <div>
+      <div className="min-w-0">
         <h3
           className={
             soon
-              ? 'font-headline text-4xl font-black tracking-tight text-dim md:text-6xl'
-              : 'font-headline text-4xl font-black tracking-tight text-cream transition-colors group-hover:text-accent md:text-6xl'
+              ? 'font-headline text-4xl font-black tracking-tight text-dim break-words md:text-6xl'
+              : 'font-headline text-4xl font-black tracking-tight text-cream break-words transition-colors group-hover:text-accent md:text-6xl'
           }
         >
           {item.title}

@@ -1,4 +1,4 @@
-import { Component, useEffect, useMemo, useRef } from 'react';
+import { Component, memo, useEffect, useMemo, useRef } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 
@@ -7,7 +7,7 @@ import * as THREE from 'three';
 //  - every cell is binarized through a 4x4 Bayer threshold matrix into
 //    dark / lit square dots
 //  - the mouse position feeds the shader as a uniform: inside its radius the
-//    brightness is boosted (spotlight-reveal — dots the threshold would kill
+//    brightness is boosted (spotlight-reveal - dots the threshold would kill
 //    become visible) and lit dots shift from grey toward the cyan accent.
 const vertex = /* glsl */ `
   void main() {
@@ -142,7 +142,7 @@ function DitherPlane() {
 }
 
 // A failed WebGL context creation throws from inside the React tree and would
-// otherwise take the whole app down — contain it and fall back to the flat bg.
+// otherwise take the whole app down - contain it and fall back to the flat bg.
 class GlBoundary extends Component {
   state = { failed: false };
   static getDerivedStateFromError() {
@@ -153,18 +153,32 @@ class GlBoundary extends Component {
   }
 }
 
+// Probe WebGL support AT MOST ONCE for the whole page lifetime. Creating a
+// context here and forgetting it (as a per-render check would) leaks a real
+// WebGL context every render - and this component re-renders on every scroll
+// (parent `active` state), so aggressive scrolling used to exhaust the
+// browser's context budget ("Too many active WebGL contexts. Oldest context
+// will be lost."), killing the live canvas. Cache the result and immediately
+// release the probe context.
+let _webglOK;
 function webglAvailable() {
+  if (_webglOK !== undefined) return _webglOK;
   try {
     const c = document.createElement('canvas');
-    return !!(c.getContext('webgl2') || c.getContext('webgl'));
+    const gl = c.getContext('webgl2') || c.getContext('webgl');
+    _webglOK = !!gl;
+    gl?.getExtension?.('WEBGL_lose_context')?.loseContext();
   } catch {
-    return false;
+    _webglOK = false;
   }
+  return _webglOK;
 }
 
-// Fills its nearest positioned ancestor — mounted inside the hero section
+// Fills its nearest positioned ancestor - mounted inside the hero section
 // only, so the pixel field stays behind the name lockup and ends at the fold.
-export default function DitherBackground() {
+// memo() so parent re-renders (scroll-driven `active` state) never re-render
+// this subtree or its <Canvas> - the WebGL context is created exactly once.
+function DitherBackground() {
   // Static dark base is plenty under reduced motion or without WebGL.
   if (
     typeof window === 'undefined' ||
@@ -176,10 +190,12 @@ export default function DitherBackground() {
   return (
     <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
       <GlBoundary>
-        <Canvas dpr={[1, 1.5]} gl={{ antialias: false, alpha: false }} frameloop="always">
+        <Canvas dpr={[1, 1.5]} gl={{ antialias: false, alpha: false, powerPreference: 'low-power' }} frameloop="always">
           <DitherPlane />
         </Canvas>
       </GlBoundary>
     </div>
   );
 }
+
+export default memo(DitherBackground);

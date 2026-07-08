@@ -1,5 +1,5 @@
 // Vendored from @banjobyster/bysters demo (demo/characters/crt-toddler.js).
-// "Pip" — a Pixar-style CRT toddler: beige-gray monitor head, green pixel face,
+// "Pip" - a Pixar-style CRT toddler: beige-gray monitor head, green pixel face,
 // small blue chest, four ring-armored accordion legs. Character definitions are
 // consumer-supplied assets; the engine itself is character-agnostic.
 

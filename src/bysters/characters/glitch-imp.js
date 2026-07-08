@@ -1,5 +1,5 @@
 // Vendored from @banjobyster/bysters demo (demo/characters/glitch-imp.js).
-// "Byte" — a mischievous little CRT gremlin: smaller, quicker, warm cherry-red,
+// "Byte" - a mischievous little CRT gremlin: smaller, quicker, warm cherry-red,
 // glowing amber eyes and a cheeky grin.
 
 const COL = {

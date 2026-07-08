@@ -27,7 +27,7 @@ const VIEW_FRAC = { pip: 0.4, byte: 0.55, winnow: 0.7 };
 
 // commanded() routes a byster to `self.command` at priority above wander/perch;
 // re-issuing that command every frame at the CURRENT viewport makes the bots
-// continuously chase where you're reading — climb DOWN as you scroll down, UP
+// continuously chase where you're reading - climb DOWN as you scroll down, UP
 // as you scroll up. fleeCursor/flee sit above it, so they still bolt from the
 // cursor before resuming the climb.
 const CAST = [

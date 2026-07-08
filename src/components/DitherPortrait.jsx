@@ -12,8 +12,8 @@ const BAYER = [
   [3, 11, 1, 9],
   [15, 7, 13, 5],
 ];
-const W = 96;
-const H = 128;
+const W = 170;
+const H = 150;
 const RADIUS = 34; // spotlight radius, in cell units
 
 // Accent #c3fffc vs the resting grey/dark cells.

@@ -18,7 +18,22 @@ import RailLadder from './components/RailLadder.jsx';
 import Bysters from './bysters/Bysters.jsx';
 import { trackVisit } from './lib/analytics.js';
 
+function useMediaQuery(query) {
+  const [matches, setMatches] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia(query).matches : false
+  );
+  useEffect(() => {
+    const mql = window.matchMedia(query);
+    const onChange = () => setMatches(mql.matches);
+    onChange();
+    mql.addEventListener('change', onChange);
+    return () => mql.removeEventListener('change', onChange);
+  }, [query]);
+  return matches;
+}
+
 export default function App() {
+  const isDesktop = useMediaQuery('(min-width: 768px)');
   const [ready, setReady] = useState(false);
   const [active, setActive] = useState('hero');
   // Tiny hash router: "#/..." = page route, plain "#id" = home anchor.
@@ -145,15 +160,19 @@ export default function App() {
           <ProjectsPage onBack={goBack} />
         ) : (
           <main className="relative z-10 pb-7">
-            <RailLadder />
-            <Hero />
-            <Marquee />
-            <Experience />
-            <Work />
-            <Articles />
-            <About />
-            <CoreCompetencies />
-            <Contact />
+            {/* Rail lives at the viewport-left edge; only rendered where it's shown (md+). */}
+            {isDesktop && <RailLadder />}
+            {/* Content is inset on md+ so it never sits under the rail / bots lane. */}
+            <div className="md:pl-24">
+              <Hero />
+              <Marquee />
+              <Experience />
+              <Work />
+              <Articles />
+              <About />
+              <CoreCompetencies />
+              <Contact />
+            </div>
           </main>
         ))}
 
@@ -161,8 +180,8 @@ export default function App() {
         <>
           <Hud active={isProjects ? 'work' : active} />
           <Badge />
-          {/* Bysters climb the rail-ladder terrain and follow your scroll. */}
-          {!isProjects && <Bysters />}
+          {/* Bysters climb the rail-ladder terrain and follow your scroll (md+ only). */}
+          {!isProjects && isDesktop && <Bysters />}
         </>
       )}
     </LayoutGroup>

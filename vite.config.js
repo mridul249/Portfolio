@@ -7,13 +7,13 @@ import tailwindcss from '@tailwindcss/vite';
 // server needs websockets (HMR) and inline style injection that this policy
 // would block.
 //
-// - script-src 'self'            — only our own bundles; no inline/eval.
-// - style-src  'unsafe-inline'   — Google Fonts stylesheet + injected styles
+// - script-src 'self'            - only our own bundles; no inline/eval.
+// - style-src  'unsafe-inline'   - Google Fonts stylesheet + injected styles
 //                                  (low risk; scripts stay locked down).
-// - font-src   fonts.gstatic.com — the font files themselves.
-// - worker-src blob:             — pixi.js spawns blob-URL workers.
-// - img/media  data: blob:       — generated textures (three/pixi canvases).
-// - object-src 'none', base-uri 'self', form-action 'none' — no plugins,
+// - font-src   fonts.gstatic.com - the font files themselves.
+// - worker-src blob:             - pixi.js spawns blob-URL workers.
+// - img/media  data: blob:       - generated textures (three/pixi canvases).
+// - object-src 'none', base-uri 'self', form-action 'none' - no plugins,
 //   no <base> hijacking, no form exfiltration (the site has no forms).
 const CSP = [
   "default-src 'self'",

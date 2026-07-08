@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import content from '../data/content.json';
 import DitherPortrait from './DitherPortrait.jsx';
 
-// Hero-only pixel field (heavy WebGL — keep it lazy).
+// Hero-only pixel field (heavy WebGL - keep it lazy).
 const DitherBackground = lazy(() => import('./DitherBackground.jsx'));
 
 const { profile } = content;
@@ -56,7 +56,7 @@ const rise = {
 export default function Hero() {
   return (
     <section id="hero" className="relative flex min-h-screen items-center overflow-hidden px-5 pt-14">
-      {/* Bayer-dithered pixel field with cursor spotlight — hero box only. */}
+      {/* Bayer-dithered pixel field with cursor spotlight - hero box only. */}
       <Suspense fallback={null}>
         <DitherBackground />
       </Suspense>
@@ -108,14 +108,14 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      <motion.span
+      {/* <motion.span
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2 }}
         className="mono absolute bottom-14 right-5 text-[10px] text-grey"
       >
         ▼ SCROLL
-      </motion.span>
+      </motion.span> */}
     </section>
   );
 }

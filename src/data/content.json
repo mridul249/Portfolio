@@ -11,7 +11,9 @@
     { "id": "work", "label": "WORK" },
     { "id": "articles", "label": "ARTICLES" },
     { "id": "about", "label": "ABOUT" },
+    { "id": "competencies", "label": "CORE COMPETENCIES" },
     { "id": "contact", "label": "CONTACT" }
+    
   ],
   "profile": {
     "eyebrow": "SOFTWARE ENGINEER",
@@ -78,6 +80,22 @@
       "description": "A userspace VPN with TUN-based IP tunneling, X25519 key exchange, and AES-GCM authenticated encryption over UDP",
       "details": "A userspace VPN written from scratch in Go. At its core is a TUN-based IP tunnel that carries encrypted traffic over UDP, secured with an X25519 elliptic-curve key exchange and AES-GCM authenticated encryption. Built incrementally in deliberate layers - TUN interface fundamentals, raw packet forwarding, session and handshake logic, encryption, and finally key exchange - as both a working VPN and a hands-on deep dive into Go's networking stack. Doubles as the anchor project for an upcoming technical content series walking through each layer of the build.",
       "link": { "label": "GITHUB", "url": "https://github.com/mridul249" }
+    },
+    {
+      "index": "006",
+      "tags": ["Python", "PyTorch", "Pygame", "Reinforcement Learning", "DQN"],
+      "title": "BREAKOUT DQN",
+      "description": "An AI agent that learns to play the classic Atari game Breakout using a Reinforcement Learning approach.",
+      "details": "A reinforcement learning implementation of Atari Breakout where an AI learns to play from scratch. The custom game environment is built with Pygame, while the DQN algorithm is powered by PyTorch. The agent processes raw game pixels using OpenCV, passing them through a Convolutional Neural Network (CNN) to evaluate state-action pairs. Features include a replay memory buffer, epsilon-greedy exploration, and Q-value optimization via the Bellman equation to maximize gameplay rewards.",
+      "link": { "label": "GITHUB", "url": "https://github.com/mridul249/breakout-game-dqn" }
+    },
+    {
+      "index": "007",
+      "tags": ["Python", "Pygame", "Genetic Algorithms", "Neural Networks"],
+      "title": "GENETIC ALGO PING PONG",
+      "description": "A ping pong game simulation where AI agents evolve to play the game using a genetic algorithm.",
+      "details": "A custom training environment built with Pygame where a population of 100 AI agents learns to play ping pong through neuroevolution. Instead of backpropagation, the system uses a genetic algorithm to mutate the weights and biases of a custom-built neural network. Agents take real-time coordinates (paddle position, ball position, and velocity) as inputs to determine movement. The fittest agent of each generation is selected based on rally score and survival, spawning a mutated offspring population. Features real-time visual rendering of the game and the evolving network topology.",
+      "link": { "label": "GITHUB", "url": "https://github.com/mridul_249/Genetic-Algo-Ping-Pong-Game" }
     }
   ],
   "experience": [

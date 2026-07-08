@@ -11,7 +11,7 @@ export default function Badge() {
       title="GitHub"
     >
       <span className="font-headline text-[11px] font-black leading-none text-base">
-        {content.badge.top}
+        <img src="/github.svg" alt="GitHub" className="h-[18px] w-[18px]" />
       </span>
       <span
         className="mono text-[8px] font-semibold text-base"

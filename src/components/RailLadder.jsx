@@ -17,20 +17,26 @@ export default function RailLadder() {
   const [count, setCount] = useState(0);
   const [height, setHeight] = useState(0);
 
-  const RUNG_H = 7; // capsule height — pair with RUNG_W for pill proportions
+  const RUNG_H = 7; // capsule height - pair with RUNG_W for pill proportions
   const RUNG_W = 50; // pill shape: half the height
-  // Lay enough rungs to span the whole document; re-measure on layout changes.
   useEffect(() => {
-    const measure = () => {
+    let t = 0;
+    const commit = () => {
       const h = Math.max(document.documentElement.scrollHeight, window.innerHeight);
-      setHeight(h);
-      setCount(Math.max(2, Math.ceil(h / RUNG_GAP)));
+      const n = Math.max(2, Math.ceil(h / RUNG_GAP));
+      setHeight((prev) => (prev === h ? prev : h));
+      setCount((prev) => (prev === n ? prev : n));
     };
-    measure();
+    const measure = () => {
+      clearTimeout(t);
+      t = setTimeout(commit, 120);
+    };
+    commit();
     const ro = new ResizeObserver(measure);
     ro.observe(document.body);
     window.addEventListener('resize', measure);
     return () => {
+      clearTimeout(t);
       ro.disconnect();
       window.removeEventListener('resize', measure);
     };
@@ -44,7 +50,7 @@ export default function RailLadder() {
     >
       {/* the rail spine */}
       <div className="absolute top-0 h-full w-px bg-edge" style={{ left: COL_A + RUNG_W / 2 }} />
-      {/* rung clips — each is a walkable ledge; they zig-zag so bots can hop up */}
+      {/* rung clips - each is a walkable ledge; they zig-zag so bots can hop up */}
       {Array.from({ length: count }).map((_, i) => (
         <i
           key={i}
@@ -54,7 +60,7 @@ export default function RailLadder() {
             top: i * RUNG_GAP,
             left: i % 2 === 0 ? COL_A : COL_B,
             width: RUNG_W,
-            height: RUNG_H, // taller now — capsule, not a flat bar (try ~22–24)
+            height: RUNG_H, // taller now - capsule, not a flat bar (try ~22–24)
             border: '1.5px solid var(--color-dim)',
             background: 'var(--color-bg)', // occludes the vertical line behind it
             opacity: 0.85,

@@ -2,18 +2,7 @@ import content from '../data/content.json';
 
 // First-party visitor analytics for the site owner. Builds a lightweight
 // browser fingerprint + a stable visitor id and POSTs it to a configurable
-// endpoint (content.analytics.endpoint). The IP address and geolocation are
-// intentionally NOT read here — the browser can't see its own public IP, and a
-// third-party IP service would be blocked by the site CSP. The receiving
-// endpoint should derive IP + geo from the request server-side (that is the
-// reliable, standard place to do it).
-//
-// Guardrails (kept deliberately conservative):
-//   - disabled unless an endpoint is configured
-//   - honors Do-Not-Track / Global Privacy Control
-//   - fires at most once per browser session
-// NOTE: depending on your audience/jurisdiction (e.g. GDPR/ePrivacy) collecting
-// a fingerprint may require a consent banner. Wire that in before going live.
+// endpoint (content.analytics.endpoint).
 
 const SESSION_FLAG = 'mk-analytics-sent';
 const VISITOR_KEY = 'mk-visitor-id';
@@ -105,7 +94,7 @@ function collect() {
     visitorId = localStorage.getItem(VISITOR_KEY) || visitorId;
     localStorage.setItem(VISITOR_KEY, visitorId);
   } catch {
-    /* storage blocked — fall back to the derived id */
+    /* storage blocked - fall back to the derived id */
   }
 
   return {
