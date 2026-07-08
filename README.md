@@ -1,9 +1,8 @@
 # Mridul Kumar - Portfolio
 
-<video src="https://raw.githubusercontent.com/mridul249/Portfolio/main/public/portfolio_screencast.mp4" controls="controls" muted="muted" width="100%">
-</video>
+<video src="https://github.com/mridul249/Portfolio/raw/main/public/portfolio_screencast.mp4" controls muted width="100%"></video>
 
-See live demo at [https://mriduld.in](mriduld.in)
+See live demo at [mriduld.in](https://mriduld.in)
 
 Minimal dark-grey portfolio: mono HUD chrome, WebGL fluid background, procedurally-animated bots. Built with **Vite + React**, **Tailwind CSS v4**, **Framer Motion**, **React Three Fiber**, and [`@banjobyster/bysters`](https://github.com/banjobyster/bysters).
 
