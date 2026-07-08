@@ -1,17 +1,7 @@
 # Mridul Kumar - Portfolio
 
-public/portfolio_screencast.mp4
-
-<!--
-  GitHub only renders video previews for files uploaded through its own
-  attachment flow (drag-and-drop into a PR/issue/README editor on github.com),
-  which gives you a github.com/user-attachments/... URL - swap that in above.
-  A plain relative path like public/portfolio_screencast.mp4 will NOT preview
-  inline; it just renders as a dead link. If you'd rather skip the upload step,
-  use a clickable poster image instead:
-
-  [![Watch the demo](public/preview.png)](public/portfolio_screencast.mp4)
--->
+<video src="https://raw.githubusercontent.com/mridul249/Portfolio/ef4c16b26af0fb4030765f2d3a61a21f0a239118/public/portfolio_screencast.mp4" controls="controls" muted="muted" width="100%">
+</video>
 
 Minimal dark-grey portfolio: mono HUD chrome, WebGL fluid background, procedurally-animated bots. Built with **Vite + React**, **Tailwind CSS v4**, **Framer Motion**, **React Three Fiber**, and [`@banjobyster/bysters`](https://github.com/banjobyster/bysters).
 
