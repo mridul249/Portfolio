@@ -1,0 +1,156 @@
+{
+  "meta": {
+    "logo": "MK",
+    "wordmark": "DWIVEDI. 2026",
+    "accent": "#C3FFFC",
+    "timezone": "Asia/Kolkata",
+    "utcOffset": "+05:30"
+  },
+  "nav": [
+    { "id": "experience", "label": "EXPERIENCE" },
+    { "id": "work", "label": "WORK" },
+    { "id": "articles", "label": "ARTICLES" },
+    { "id": "about", "label": "ABOUT" },
+    { "id": "contact", "label": "CONTACT" }
+  ],
+  "profile": {
+    "eyebrow": "SOFTWARE ENGINEER",
+    "tagline": "SYSTEMS · CONTAINER SECURITY · DISTRIBUTED SYSTEMS · HYPERVISOR RESEARCH",
+    "nameLine1": "MRIDUL",
+    "nameLine2": "KUMAR.",
+    "statRow": [
+      "B.TECH AI & DS - IIT PATNA",
+      "BANGALORE, INDIA",
+      "OPEN TO GLOBAL ROLES"
+    ],
+    "emailEnc": "Y29udGFjdEBtcmlkdWxkLmlu",
+    "resume": "/resume.pdf",
+    "links": {
+      "github": "https://github.com/mridul249",
+      "linkedin": "https://www.linkedin.com/in/mridul249",
+      "codeforces": "https://codeforces.com/profile/bunnypink"
+    }
+  },
+  "badge": { "top": "GH", "label": "GITHUB" },
+  "marquee": [
+    "PYTHON", "C", "DOCKER", "KUBERNETES", "HELM", "INTEL VT-X",
+    "HYPERDBG", "BASH", "REACT", "NODE.JS", "FLUTTER", "ELECTRON",
+    "POSIX", "FASTMCP", "STIG/FIPS"
+  ],
+  "workHomeLimit": 3,
+  "work": [
+    {
+      "index": "001",
+      "tags": ["C", "VT-X", "HYPERDBG", "RING-1"],
+      "title": "Hypervisor Based Malware defense system",
+      "description": "Hypervisor-based malware defense operating at Ring -1. Invisibly intercepts Windows kernel syscalls using HyperDbg and Intel VT-x.",
+      "details": "A stealthy, hypervisor-based malware analysis engine operating at Ring -1 (VMX root), built on HyperDbg and Intel VT-x. It intercepts 24 Windows kernel syscalls without leaving a footprint visible to the guest OS, using live kernel structure traversal and EPROCESS side-channels to extract real-time process metadata invisibly to the malware being observed. The system is paired with a fully automated, stateless detonation pipeline that orchestrates 12-step per-sample workflows - including VM reversion, FakeNet network simulation, and named-pipe synchronization - enabling unattended dynamic analysis with zero-install, in-VM PE arming and no host filesystem exposure. Captured syscall traces feed a Python enrichment pipeline (pairing, enrichment, graph construction, tokenization, and scoring) into a dual-branch 1D-CNN and graph-MLP classifier trained with multiple-instance learning loss, achieving an AUROC of 0.751 across 909 automated detonations. The project began as an undergraduate thesis and has since been handed off to PhD researchers for possible conference submission.",
+      "link": { "label": "GITHUB", "url": "https://github.com/mridul249/HyperSentinel" }
+    },
+    {
+      "index": "002",
+      "tags": ["C", "PTHREADS", "NON-BLOCKING I/O"],
+      "title": "Proxy Server",
+      "description": "Multi-threaded C HTTP proxy engine managing 400+ simultaneous connections with POSIX threads and non-blocking I/O.",
+      "details": "A multithreaded HTTP proxy server architected in C to efficiently manage 400+ simultaneous TCP connections, built directly on POSIX threads, semaphores, and non-blocking I/O - no external frameworks, no runtime, just careful concurrency and socket-level engineering. Implements full HTTP/1.1 compliance with persistent connections, CONNECT tunneling for HTTPS traffic, and intelligent header rewriting to enable seamless, low-latency client-server communication under sustained concurrent load.",
+      "link": { "label": "GITHUB", "url": "https://github.com/mridul249/Proxy-Server" }
+    },
+    {
+      "index": "003",
+      "tags": ["ELECTRON", "REACT", "P2P"],
+      "title": "P2P File Sharing System",
+      "description": "Decentralized cross-platform streaming Desktop app focused on high sustained local data throughput and peer discovery.",
+      "details": "A decentralized, cross-platform desktop application built with Electron.js and React for streaming files directly between peers on a local network - no central server in the loop. Peers discover one another automatically, and the transfer layer is tuned for high sustained local throughput, making it well suited for moving large files quickly across a LAN without relying on cloud intermediaries.",
+      "link": { "label": "GITHUB", "url": "https://github.com/mridul249/P2P-File-Sharing" }
+    },
+    {
+      "index": "004",
+      "tags": ["PowerShell", "Python", "bash", "OS Internal", "SSH", "Fileless", "Network"],
+      "title": "Remote Access Trojan (RAT)",
+      "description": "SSH, virtually fileless, network oriented Remote Access Trojan",
+      "details": "A research-oriented Remote Access Trojan built to study offensive tooling and endpoint defense from the attacker's side. Communicates over SSH, operates in a virtually fileless manner to minimize on-disk artifacts, and leans on OS-internal mechanisms across PowerShell, Python, and Bash to blend into normal system and network activity.",
+      "link": { "label": "GITHUB", "url": "https://github.com/mridul249/RAT" }
+    },
+    {
+      "index": "005",
+      "tags": ["GoLang", "Networks", "TUN", "AES-GCM"],
+      "title": "BURROW",
+      "description": "A userspace VPN with TUN-based IP tunneling, X25519 key exchange, and AES-GCM authenticated encryption over UDP",
+      "details": "A userspace VPN written from scratch in Go. At its core is a TUN-based IP tunnel that carries encrypted traffic over UDP, secured with an X25519 elliptic-curve key exchange and AES-GCM authenticated encryption. Built incrementally in deliberate layers - TUN interface fundamentals, raw packet forwarding, session and handshake logic, encryption, and finally key exchange - as both a working VPN and a hands-on deep dive into Go's networking stack. Doubles as the anchor project for an upcoming technical content series walking through each layer of the build.",
+      "link": { "label": "GITHUB", "url": "https://github.com/mridul249" }
+    }
+  ],
+  "experience": [
+    {
+      "index": "001",
+      "company": "Rapidfort Inc.",
+      "role": "SOFTWARE ENGINEER",
+      "period": "JAN 2026 - PRESENT",
+      "points": [
+        "Built and maintained security-hardened curated container images compliant with STIG/FIPS standards, eliminating vulnerable dependencies and minimizing runtime attack surface for cloud workloads.",
+        "Designed and maintained Helm charts for Kubernetes deployments, enabling reproducible, configurable, and secure containerized application delivery.",
+        "Automated container build, patching, testing, and release pipelines using Python and Bash, supporting RapidFort's zero-CVE curated image ecosystem.",
+        "Implemented secure software supply chain practices, including SBOM generation, reproducible builds, and CVE remediation for production-ready container artifacts."
+      ]
+    },
+    {
+      "index": "002",
+      "company": "SIEMENS",
+      "role": "SOFTWARE DEVELOPER INTERN",
+      "period": "MAY 2025 - AUG 2025",
+      "points": [
+        "Built a Model Context Protocol (MCP) client via FastMCP that connected with MCP servers controlling robotic arms, autonomous vehicles, and inventory systems, exposed as an HTTP endpoint using FastMCP and FastAPI.",
+        "Created real-time Server-Sent Events (SSE) dashboards showing live progress of each system task, with direct control of the MCP client from the interface.",
+        "Developed a mobile app converting PDF-based manual workflows into clear, step-by-step interactive guides, reducing operational labor requirements by nearly 50%.",
+        "Integrated OPC-UA and MQTT communication protocols to let heterogeneous automation systems share data quickly and reliably."
+      ]
+    },
+    {
+      "index": "003",
+      "company": "SSquad Ventures",
+      "role": "FULL STACK DEVELOPER INTERN",
+      "period": "JAN 2025 - APR 2025",
+      "points": [
+        "Engineered a scalable social-commerce platform, Outgoingg, using Flutter and Node.js, enabling users to socialize, plan, shop, and manage advertisements through a unified interface.",
+        "Optimized backend performance via query indexing, caching, and pagination, achieving a documented 35% reduction in API latency while ensuring robust data consistency across services.",
+        "Implemented best practices across state management, modular architecture, secure token handling, and CI/CD workflows for maintainable, high-performing releases."
+      ]
+    }
+  ],
+  "articles": {
+    "apiUrl": "",
+    "emptyMessage": "NOTHING TO DISPLAY"
+  },
+  "competencies": {
+    "label": "CORE COMPETENCIES",
+    "items": [
+      { "icon": "bolt", "title": "AI & INTELLIGENT SYSTEMS" },
+      { "icon": "shield", "title": "SECURITY & HARDENING" },
+      { "icon": "layers", "title": "SYSTEMS & SCALE" },
+      { "icon": "monitor", "title": "ENGINEERING & CODE" },
+      { "icon": "gauge", "title": "RESEARCH & DELIVERY" }
+    ]
+  },
+  "analytics": {
+    "endpoint": ""
+  },
+  "about": {
+    "blurb": "I work on systems that sit below the application layer - kernels, hypervisors, container runtimes. Currently building security-hardened container images at RapidFort; previously spent a year building a Ring -1 hypervisor that intercepts Windows kernel syscalls to study malware behavior. B.Tech in AI & Data Science from IIT Patna, Codeforces Specialist.",
+    "rows": [
+      { "label": "EDUCATION", "value": "B.TECH AI&DS - Indian Institute of Technology, Patna" },
+      { "label": "TIMELINE", "value": "NOV 2022 - MAY 2026" },
+      { "label": "CPI", "value": "8.54" },
+      { "label": "CODEFORCES", "value": "SPECIALIST" },
+      { "label": "JEE MAINS", "value": "TOP 2% OF 900,000+" }
+    ]
+  },
+  "contact": {
+    "heading": "CONTACT",
+    "sub": "OPEN TO ROLES IN SYSTEMS, SECURITY AND INFRASTRUCTURE.",
+    "socials": [
+      { "label": "GITHUB", "key": "github" },
+      { "label": "LINKEDIN", "key": "linkedin" },
+      { "label": "CODEFORCES", "key": "codeforces" }
+    ]
+  }
+}
