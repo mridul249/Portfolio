@@ -7,13 +7,30 @@
     "utcOffset": "+05:30"
   },
   "nav": [
-    { "id": "experience", "label": "EXPERIENCE" },
-    { "id": "work", "label": "WORK" },
-    { "id": "articles", "label": "ARTICLES" },
-    { "id": "about", "label": "ABOUT" },
-    { "id": "competencies", "label": "CORE COMPETENCIES" },
-    { "id": "contact", "label": "CONTACT" }
-    
+    {
+      "id": "experience",
+      "label": "EXPERIENCE"
+    },
+    {
+      "id": "work",
+      "label": "WORK"
+    },
+    {
+      "id": "articles",
+      "label": "ARTICLES"
+    },
+    {
+      "id": "about",
+      "label": "ABOUT"
+    },
+    {
+      "id": "competencies",
+      "label": "CORE COMPETENCIES"
+    },
+    {
+      "id": "contact",
+      "label": "CONTACT"
+    }
   ],
   "profile": {
     "eyebrow": "SOFTWARE ENGINEER",
@@ -33,69 +50,142 @@
       "codeforces": "https://codeforces.com/profile/bunnypink"
     }
   },
-  "badge": { "top": "GH", "label": "GITHUB" },
+  "badge": {
+    "top": "GH",
+    "label": "GITHUB"
+  },
   "marquee": [
-    "PYTHON", "C", "DOCKER", "KUBERNETES", "HELM", "INTEL VT-X",
-    "HYPERDBG", "BASH", "REACT", "NODE.JS", "FLUTTER", "ELECTRON",
-    "POSIX", "FASTMCP", "STIG/FIPS"
+    "PYTHON",
+    "C",
+    "DOCKER",
+    "KUBERNETES",
+    "HELM",
+    "INTEL VT-X",
+    "HYPERDBG",
+    "BASH",
+    "REACT",
+    "NODE.JS",
+    "FLUTTER",
+    "ELECTRON",
+    "POSIX",
+    "FASTMCP",
+    "STIG/FIPS"
   ],
   "workHomeLimit": 3,
   "work": [
     {
       "index": "001",
-      "tags": ["C", "VT-X", "HYPERDBG", "RING-1"],
+      "tags": [
+        "C",
+        "VT-X",
+        "HYPERDBG",
+        "RING-1"
+      ],
       "title": "Hypervisor Based Malware defense system",
       "description": "Hypervisor-based malware defense operating at Ring -1. Invisibly intercepts Windows kernel syscalls using HyperDbg and Intel VT-x.",
       "details": "A stealthy, hypervisor-based malware analysis engine operating at Ring -1 (VMX root), built on HyperDbg and Intel VT-x. It intercepts 24 Windows kernel syscalls without leaving a footprint visible to the guest OS, using live kernel structure traversal and EPROCESS side-channels to extract real-time process metadata invisibly to the malware being observed. The system is paired with a fully automated, stateless detonation pipeline that orchestrates 12-step per-sample workflows - including VM reversion, FakeNet network simulation, and named-pipe synchronization - enabling unattended dynamic analysis with zero-install, in-VM PE arming and no host filesystem exposure. Captured syscall traces feed a Python enrichment pipeline (pairing, enrichment, graph construction, tokenization, and scoring) into a dual-branch 1D-CNN and graph-MLP classifier trained with multiple-instance learning loss, achieving an AUROC of 0.751 across 909 automated detonations. The project began as an undergraduate thesis and has since been handed off to PhD researchers for possible conference submission.",
-      "link": { "label": "GITHUB", "url": "https://github.com/mridul249/HyperSentinel" }
+      "link": {
+        "label": "GITHUB",
+        "url": "https://github.com/mridul249/HyperSentinel"
+      }
     },
     {
       "index": "002",
-      "tags": ["C", "PTHREADS", "NON-BLOCKING I/O"],
+      "tags": [
+        "C",
+        "PTHREADS",
+        "NON-BLOCKING I/O"
+      ],
       "title": "Proxy Server",
       "description": "Multi-threaded C HTTP proxy engine managing 400+ simultaneous connections with POSIX threads and non-blocking I/O.",
       "details": "A multithreaded HTTP proxy server architected in C to efficiently manage 400+ simultaneous TCP connections, built directly on POSIX threads, semaphores, and non-blocking I/O - no external frameworks, no runtime, just careful concurrency and socket-level engineering. Implements full HTTP/1.1 compliance with persistent connections, CONNECT tunneling for HTTPS traffic, and intelligent header rewriting to enable seamless, low-latency client-server communication under sustained concurrent load.",
-      "link": { "label": "GITHUB", "url": "https://github.com/mridul249/Proxy-Server" }
+      "link": {
+        "label": "GITHUB",
+        "url": "https://github.com/mridul249/Proxy-Server"
+      }
     },
     {
       "index": "003",
-      "tags": ["ELECTRON", "REACT", "P2P"],
-      "title": "P2P File Sharing System",
-      "description": "Decentralized cross-platform streaming Desktop app focused on high sustained local data throughput and peer discovery.",
-      "details": "A decentralized, cross-platform desktop application built with Electron.js and React for streaming files directly between peers on a local network - no central server in the loop. Peers discover one another automatically, and the transfer layer is tuned for high sustained local throughput, making it well suited for moving large files quickly across a LAN without relying on cloud intermediaries.",
-      "link": { "label": "GITHUB", "url": "https://github.com/mridul249/P2P-File-Sharing" }
-    },
-    {
-      "index": "004",
-      "tags": ["PowerShell", "Python", "bash", "OS Internal", "SSH", "Fileless", "Network"],
-      "title": "Remote Access Trojan (RAT)",
-      "description": "SSH, virtually fileless, network oriented Remote Access Trojan",
-      "details": "A research-oriented Remote Access Trojan built to study offensive tooling and endpoint defense from the attacker's side. Communicates over SSH, operates in a virtually fileless manner to minimize on-disk artifacts, and leans on OS-internal mechanisms across PowerShell, Python, and Bash to blend into normal system and network activity.",
-      "link": { "label": "GITHUB", "url": "https://github.com/mridul249/RAT" }
-    },
-    {
-      "index": "005",
-      "tags": ["GoLang", "Networks", "TUN", "AES-GCM"],
+      "tags": [
+        "GoLang",
+        "Networks",
+        "TUN",
+        "AES-GCM"
+      ],
       "title": "BURROW",
       "description": "A userspace VPN with TUN-based IP tunneling, X25519 key exchange, and AES-GCM authenticated encryption over UDP",
       "details": "A userspace VPN written from scratch in Go. At its core is a TUN-based IP tunnel that carries encrypted traffic over UDP, secured with an X25519 elliptic-curve key exchange and AES-GCM authenticated encryption. Built incrementally in deliberate layers - TUN interface fundamentals, raw packet forwarding, session and handshake logic, encryption, and finally key exchange - as both a working VPN and a hands-on deep dive into Go's networking stack. Doubles as the anchor project for an upcoming technical content series walking through each layer of the build.",
-      "link": { "label": "GITHUB", "url": "https://github.com/mridul249" }
+      "link": {
+        "label": "GITHUB",
+        "url": "https://github.com/mridul249"
+      }
     },
     {
-      "index": "006",
-      "tags": ["Python", "PyTorch", "Pygame", "Reinforcement Learning", "DQN"],
+      "index": "004",
+      "tags": [
+        "ELECTRON",
+        "REACT",
+        "P2P"
+      ],
+      "title": "P2P File Sharing System",
+      "description": "Decentralized cross-platform streaming Desktop app focused on high sustained local data throughput and peer discovery.",
+      "details": "A decentralized, cross-platform desktop application built with Electron.js and React for streaming files directly between peers on a local network - no central server in the loop. Peers discover one another automatically, and the transfer layer is tuned for high sustained local throughput, making it well suited for moving large files quickly across a LAN without relying on cloud intermediaries.",
+      "link": {
+        "label": "GITHUB",
+        "url": "https://github.com/mridul249/P2P-File-Sharing"
+      }
+    },
+    {
+      "index": "005",
+      "tags": [
+        "Python",
+        "PyTorch",
+        "Pygame",
+        "Reinforcement Learning",
+        "DQN"
+      ],
       "title": "BREAKOUT DQN",
       "description": "An AI agent that learns to play the classic Atari game Breakout using a Reinforcement Learning approach.",
       "details": "A reinforcement learning implementation of Atari Breakout where an AI learns to play from scratch. The custom game environment is built with Pygame, while the DQN algorithm is powered by PyTorch. The agent processes raw game pixels using OpenCV, passing them through a Convolutional Neural Network (CNN) to evaluate state-action pairs. Features include a replay memory buffer, epsilon-greedy exploration, and Q-value optimization via the Bellman equation to maximize gameplay rewards.",
-      "link": { "label": "GITHUB", "url": "https://github.com/mridul249/breakout-game-dqn" }
+      "link": {
+        "label": "GITHUB",
+        "url": "https://github.com/mridul249/breakout-game-dqn"
+      }
     },
     {
-      "index": "007",
-      "tags": ["Python", "Pygame", "Genetic Algorithms", "Neural Networks"],
+      "index": "006",
+      "tags": [
+        "Python",
+        "Pygame",
+        "Genetic Algorithms",
+        "Neural Networks"
+      ],
       "title": "GENETIC ALGO PING PONG",
       "description": "A ping pong game simulation where AI agents evolve to play the game using a genetic algorithm.",
       "details": "A custom training environment built with Pygame where a population of 100 AI agents learns to play ping pong through neuroevolution. Instead of backpropagation, the system uses a genetic algorithm to mutate the weights and biases of a custom-built neural network. Agents take real-time coordinates (paddle position, ball position, and velocity) as inputs to determine movement. The fittest agent of each generation is selected based on rally score and survival, spawning a mutated offspring population. Features real-time visual rendering of the game and the evolving network topology.",
-      "link": { "label": "GITHUB", "url": "https://github.com/mridul_249/Genetic-Algo-Ping-Pong-Game" }
+      "link": {
+        "label": "GITHUB",
+        "url": "https://github.com/mridul_249/Genetic-Algo-Ping-Pong-Game"
+      }
+    },
+    {
+      "index": "007",
+      "tags": [
+        "PowerShell",
+        "Python",
+        "bash",
+        "OS Internal",
+        "SSH",
+        "Fileless",
+        "Network"
+      ],
+      "title": "Remote Access Trojan (RAT)",
+      "description": "SSH, virtually fileless, network oriented Remote Access Trojan",
+      "details": "A research-oriented Remote Access Trojan built to study offensive tooling and endpoint defense from the attacker's side. Communicates over SSH, operates in a virtually fileless manner to minimize on-disk artifacts, and leans on OS-internal mechanisms across PowerShell, Python, and Bash to blend into normal system and network activity.",
+      "link": {
+        "label": "GITHUB",
+        "url": "https://github.com/mridul249/RAT"
+      }
     }
   ],
   "experience": [
@@ -142,11 +232,26 @@
   "competencies": {
     "label": "CORE COMPETENCIES",
     "items": [
-      { "icon": "bolt", "title": "AI & INTELLIGENT SYSTEMS" },
-      { "icon": "shield", "title": "SECURITY & HARDENING" },
-      { "icon": "layers", "title": "SYSTEMS & SCALE" },
-      { "icon": "monitor", "title": "ENGINEERING & CODE" },
-      { "icon": "gauge", "title": "RESEARCH & DELIVERY" }
+      {
+        "icon": "bolt",
+        "title": "AI & INTELLIGENT SYSTEMS"
+      },
+      {
+        "icon": "shield",
+        "title": "SECURITY & HARDENING"
+      },
+      {
+        "icon": "layers",
+        "title": "SYSTEMS & SCALE"
+      },
+      {
+        "icon": "monitor",
+        "title": "ENGINEERING & CODE"
+      },
+      {
+        "icon": "gauge",
+        "title": "RESEARCH & DELIVERY"
+      }
     ]
   },
   "analytics": {
@@ -154,21 +259,50 @@
   },
   "about": {
     "blurb": "I work on systems that sit below the application layer - kernels, hypervisors, container runtimes. Currently building security-hardened container images at RapidFort; previously spent a year building a Ring -1 hypervisor that intercepts Windows kernel syscalls to study malware behavior. B.Tech in AI & Data Science from IIT Patna, Codeforces Specialist.",
+    "education": {
+      "label": "EDUCATION",
+      "value": {
+        "bachelors": "B.TECH AI&DS - Indian Institute of Technology, Patna",
+        "12th": "CBSE - 12th - 96.2% - DAV Public School",
+        "10th": "CBSE - 10th - 98.4% - DAV Public School",
+        "temp": ""
+      }
+    },
     "rows": [
-      { "label": "EDUCATION", "value": "B.TECH AI&DS - Indian Institute of Technology, Patna" },
-      { "label": "TIMELINE", "value": "NOV 2022 - MAY 2026" },
-      { "label": "CPI", "value": "8.54" },
-      { "label": "CODEFORCES", "value": "SPECIALIST" },
-      { "label": "JEE MAINS", "value": "TOP 2% OF 900,000+" }
+      {
+        "label": "TIMELINE",
+        "value": "NOV 2022 - MAY 2026"
+      },
+      {
+        "label": "CPI",
+        "value": "8.54"
+      },
+      {
+        "label": "CODEFORCES",
+        "value": "SPECIALIST"
+      },
+      {
+        "label": "JEE MAINS",
+        "value": "TOP 2% OF 900,000+"
+      }
     ]
   },
   "contact": {
     "heading": "CONTACT",
     "sub": "OPEN TO ROLES IN SYSTEMS, SECURITY AND INFRASTRUCTURE.",
     "socials": [
-      { "label": "GITHUB", "key": "github" },
-      { "label": "LINKEDIN", "key": "linkedin" },
-      { "label": "CODEFORCES", "key": "codeforces" }
+      {
+        "label": "GITHUB",
+        "key": "github"
+      },
+      {
+        "label": "LINKEDIN",
+        "key": "linkedin"
+      },
+      {
+        "label": "CODEFORCES",
+        "key": "codeforces"
+      }
     ]
   }
 }
