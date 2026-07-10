@@ -195,10 +195,11 @@
       "role": "SOFTWARE ENGINEER",
       "period": "JAN 2026 - PRESENT",
       "points": [
-        "Built and maintained security-hardened curated container images compliant with STIG/FIPS standards, eliminating vulnerable dependencies and minimizing runtime attack surface for cloud workloads.",
-        "Designed and maintained Helm charts for Kubernetes deployments, enabling reproducible, configurable, and secure containerized application delivery.",
-        "Automated container build, patching, testing, and release pipelines using Python and Bash, supporting RapidFort's zero-CVE curated image ecosystem.",
-        "Implemented secure software supply chain practices, including SBOM generation, reproducible builds, and CVE remediation for production-ready container artifacts."
+        "Engineered near-zero-CVE container images by stripping unused packages and dependencies, reducing attack surface by up to 95% for cloud-native production workloads.",
+        "Validated hardened images on live Kubernetes clusters, writing Python and Bash test automation to catch regressions before release across the curated image catalog.",
+        "Maintained multiple open-source image repositories compliant with STIG/FIPS standards, supporting customer certification requirements under FedRAMP, CMMC, SOC 2, and NIS 2.",
+        "Implemented secure software supply chain practices, including SBOM generation, reproducible builds, and CVE remediation for production-ready container artifacts.",
+        "Delivered continuous vulnerability remediation and image updates, consistently meeting security SLAs for enterprise and government customers."
       ]
     },
     {
