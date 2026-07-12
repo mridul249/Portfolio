@@ -1,7 +1,7 @@
 import content from '../data/content.json';
 import SectionTag from './SectionTag.jsx';
 import ProjectRow from './ProjectRow.jsx';
-
+import { trackAction } from '../lib/analytics.js';
 // Home slice of the project list; the full list lives on #/projects.
 export default function Work() {
   const limit = content.workHomeLimit ?? 3;
@@ -19,6 +19,9 @@ export default function Work() {
         <div className="rule-x pt-10">
           <a
             href="#/projects"
+            onClick={() => {
+              trackAction('See All Projects', 'PROJECTS')
+            }}
             className="mono inline-flex items-center gap-4 rounded-lg border border-accent/50 px-7 py-3.5 text-[11px] text-accent transition-colors hover:bg-accent hover:text-base"
           >
             SEE ALL PROJECTS ({String(content.work.length).padStart(2, '0')})

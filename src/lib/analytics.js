@@ -125,15 +125,49 @@ export function trackVisit() {
   const payload = collect();
   try {
     const body = JSON.stringify(payload);
-    // sendBeacon survives the page unloading; fall back to keepalive fetch.
-    if (navigator.sendBeacon) {
-      navigator.sendBeacon(endpoint, new Blob([body], { type: 'application/json' }));
-    } else {
-      fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body, keepalive: true }).catch(
-        () => {}
-      );
-    }
+    // Completely remove navigator.sendBeacon and use fetch exclusively
+    fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': import.meta.env.VITE_API_SECRET
+      },
+      body,
+      keepalive: true
+    }).catch(() => { });
+
   } catch {
     /* never let analytics break the page */
   }
+}
+
+// Add this to the bottom of src/lib/analytics.js
+export function trackAction(actionName, label) {
+  const baseEndpoint = content.analytics?.endpoint;
+  if (!baseEndpoint || dntEnabled()) return;
+
+  // Swap /track to /event
+  const eventEndpoint = baseEndpoint.replace('/track', '/event');
+
+  // Get the ID that was saved during the initial visit
+  let visitorId = 'unknown';
+  try { visitorId = localStorage.getItem('mk-visitor-id') || 'unknown'; } catch { }
+
+  const payload = {
+    visitorId,
+    action: actionName,
+    label: label
+  };
+
+  try {
+    fetch(eventEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': 'mridul-portfolio-secure-key-2026'
+      },
+      body: JSON.stringify(payload),
+      keepalive: true
+    }).catch(() => { });
+  } catch { }
 }

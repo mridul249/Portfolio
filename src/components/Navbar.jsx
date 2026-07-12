@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import content from '../data/content.json';
-
+import { trackAction } from '../lib/analytics.js';
 // Fixed top bar. Its shell shares layoutId "nav-shell" with the loader stub,
 // so the loading bar physically grows into this navbar.
 export default function Navbar({ active }) {
@@ -49,6 +49,9 @@ export default function Navbar({ active }) {
             href={content.profile.resume}
             target="_blank"
             rel="noreferrer"
+            onClick={() => {
+              trackAction('Open Resume', 'RESUME')
+            }}
             className="mono hidden rounded-full border border-accent/60 px-4 py-1.5 text-[10px] font-semibold text-accent transition-colors hover:bg-accent/10 sm:inline-block"
           >
             RESUME

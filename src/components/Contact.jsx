@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import content from '../data/content.json';
 import SectionTag from './SectionTag.jsx';
 import { decodeEmail } from '../lib/security.js';
+import { trackAction } from '../lib/analytics.js';
 
 export default function Contact() {
   const { profile, contact } = content;
@@ -32,6 +33,7 @@ export default function Contact() {
             <a
               key={r.label}
               href={r.href}
+              onClick={() => trackAction('Link Click', r.label)}
               {...(r.external ? { target: '_blank', rel: 'noreferrer' } : {})}
               className="rule-x row-hover mono flex items-center justify-between gap-4 py-5 text-[10px] text-grey transition-colors hover:text-accent"
             >

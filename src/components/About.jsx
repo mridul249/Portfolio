@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import content from '../data/content.json';
 import SectionTag from './SectionTag.jsx';
+import { trackAction } from '../lib/analytics.js';
 
 export default function About() {
   const { blurb, education,rows } = content.about;
@@ -58,7 +59,10 @@ export default function About() {
             <div className="mono flex items-center gap-6 text-[10px]">
               <button
                 type="button"
-                onClick={() => setPreview((v) => !v)}
+                onClick={() => {
+                  setPreview((v) => !v)
+                  trackAction('Prev Resume', 'RESUME')
+                }}
                 className="text-cream transition-colors hover:text-accent"
               >
                 {preview ? 'CLOSE PREVIEW ×' : 'PREVIEW ▸'}
@@ -66,6 +70,9 @@ export default function About() {
               <a
                 href={content.profile.resume}
                 download
+                onClick={() => {
+                  trackAction('Download Resume', 'RESUME')
+                }}
                 className="text-grey transition-colors hover:text-accent"
               >
                 DOWNLOAD ↓
@@ -74,6 +81,9 @@ export default function About() {
                 href={content.profile.resume}
                 target="_blank"
                 rel="noreferrer"
+                onClick={() => {
+                  trackAction('Open Resume', 'RESUME')
+                }}
                 className="text-grey transition-colors hover:text-accent"
               >
                 OPEN →

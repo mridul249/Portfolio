@@ -2,7 +2,7 @@ import { Suspense, lazy, useRef } from 'react';
 import { motion } from 'framer-motion';
 import content from '../data/content.json';
 import DitherPortrait from './DitherPortrait.jsx';
-
+import { trackAction } from '../lib/analytics.js';
 // Hero-only pixel field (heavy WebGL - keep it lazy).
 const DitherBackground = lazy(() => import('./DitherBackground.jsx'));
 
@@ -99,10 +99,30 @@ export default function Hero() {
         </motion.p>
 
         <motion.div variants={rise} className="mono mt-8 flex items-center gap-5 text-[10px]">
-          <a href={profile.resume} target="_blank" rel="noreferrer" className="text-cream underline underline-offset-4 decoration-dim transition-colors hover:text-accent">
+          <a href={profile.resume}
+            target="_blank"
+            rel="noreferrer"
+            className="text-cream 
+          underline underline-offset-4 
+          decoration-dim 
+          transition-colors 
+          hover:text-accent"
+            onClick={() => {
+              trackAction('Open Resume', 'RESUME')
+            }}
+          >
             RESUME →
           </a>
-          <a href={profile.links.github} target="_blank" rel="noreferrer" className="text-grey transition-colors hover:text-accent">
+          <a href={profile.links.github}
+            target="_blank"
+            rel="noreferrer"
+            className="text-grey 
+             transition-colors 
+             hover:text-accent"
+            onClick={() => {
+              trackAction('Open Github', 'GITHUB')
+            }}
+          >
             GITHUB →
           </a>
         </motion.div>
