@@ -50,7 +50,7 @@ A CRT-robot climbs a vertical rail to track scroll. Target Y = `scrollY / (scrol
 
 ## Custom Secure Analytics
 
-The portfolio utilizes a custom-built Express/MongoDB backend to track traffic and interactions securely, without relying on third-party commercial trackers. It honors Do-Not-Track/GPC signals.
+The portfolio utilizes a custom-built Express/MongoDB backend to track traffic and interactions securely, without relying on third-party commercial trackers. It pushes Telegram notifications per visit/event. It honors Do-Not-Track/GPC signals.
 
 **1. Visit Tracking (`/api/track`)**
 Fires once per session. It generates a stable `visitorId` and securely collects the user's OS, browser, and referrer. IP addresses are evaluated server-side to resolve general geolocation (City, Region, Country) before being logged to MongoDB Atlas and triggering an instant Telegram notification.
@@ -82,4 +82,4 @@ Custom domain via `CNAME`; `npm run build` outputs a root-served `dist/`. A buil
 
 ## License
 
-This project is licensed under the Apache License, Version 2.0. See the [LICENSE](https://www.google.com/search?q=LICENSE) file for the full license text and the [NOTICE](https://www.google.com/search?q=NOTICE) file for attribution requirements.
+This project is licensed under the Apache License, Version 2.0. See the [LICENSE](LICENSE) file for the full license text and the [NOTICE](NOTICE) file for attribution requirements.
