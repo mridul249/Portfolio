@@ -256,7 +256,7 @@
     ]
   },
   "analytics": {
-    "endpoint": "https://mricrawler.onrender.com/api/track"
+    "endpoint": "https://mricrawler.onrender.com/api/ping"
   },
   "about": {
     "blurb": "I work on systems that sit below the application layer - kernels, hypervisors, container runtimes. Currently building security-hardened container images at RapidFort; previously spent a year building a Ring -1 hypervisor that intercepts Windows kernel syscalls to study malware behavior. B.Tech in AI & Data Science from IIT Patna, Codeforces Specialist.",

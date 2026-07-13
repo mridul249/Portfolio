@@ -106,8 +106,7 @@ function collect() {
 }
 
 function dntEnabled() {
-  const v = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-  return v === '1' || v === 'yes' || navigator.globalPrivacyControl === true;
+  return false;
 }
 
 // Fire once per session. Safe to call on every load.
@@ -141,13 +140,12 @@ export function trackVisit() {
   }
 }
 
-// Add this to the bottom of src/lib/analytics.js
 export function trackAction(actionName, label) {
   const baseEndpoint = content.analytics?.endpoint;
   if (!baseEndpoint || dntEnabled()) return;
 
-  // Swap /track to /event
-  const eventEndpoint = baseEndpoint.replace('/track', '/event');
+  // Swap /ping to /action
+  const eventEndpoint = baseEndpoint.replace('/ping', '/action');
 
   // Get the ID that was saved during the initial visit
   let visitorId = 'unknown';
