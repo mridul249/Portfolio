@@ -1,3 +1,5 @@
+<samp>
+  
 # Mridul Kumar - Portfolio
 
 <img src="public/portfolio_screencast.gif" alt="Portfolio Demo" width="100%">
@@ -83,3 +85,5 @@ Custom domain via `CNAME`; `npm run build` outputs a root-served `dist/`. A buil
 ## License
 
 This project is licensed under the Apache License, Version 2.0. See the [LICENSE](LICENSE) file for the full license text and the [NOTICE](NOTICE) file for attribution requirements.
+
+</samp>
