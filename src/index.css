@@ -1,0 +1,113 @@
+@import 'tailwindcss';
+
+/* ---- Design tokens (Tailwind v4 @theme -> utility classes) ---- */
+@theme {
+  --font-headline: 'Archivo', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+
+  /* Greys, darkest to lightest, plus the single accent. */
+  --color-base: #0e0e0e;
+  --color-panel: #141414;
+  --color-edge: #1f1f1f;
+  --color-grey: #8a8a8a;
+  --color-dim: #565656;
+  --color-cream: #f0ede6;
+  --color-accent: #c3fffc;
+}
+
+/* ---- Base ---- */
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Base color on html too, so rubber-band / overscroll at the very top does
+     not expose a white gap above the body. */
+  background: var(--color-base);
+  overscroll-behavior-y: none;
+}
+
+body {
+  margin: 0;
+  background: var(--color-base);
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  overscroll-behavior-y: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body.has-custom-cursor,
+  body.has-custom-cursor * {
+    cursor: none;
+  }
+}
+
+::selection {
+  background: rgba(195, 255, 252, 0.25);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-base);
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a3a;
+}
+
+/* ---- Component utilities ---- */
+@layer components {
+  /* All meta/functional text: mono, caps, letterspaced. */
+  .mono {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+
+  /* Dotted horizontal divider (section + card separators). */
+  .rule-x {
+    border-top: 1px dashed rgba(240, 237, 230, 0.14);
+  }
+
+  /* Row hover affordance without being loud. */
+  .row-hover {
+    transition: background 0.25s ease;
+  }
+  .row-hover:hover {
+    background: rgba(240, 237, 230, 0.025);
+  }
+}
+
+/* Continuous marquee: track holds two copies of the list. */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 32s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
